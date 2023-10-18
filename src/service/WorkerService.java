@@ -52,24 +52,30 @@ public class WorkerService {
     public void upSalary(Scanner scanner,ArrayList<Worker> workers){
         System.out.println("Mời bạn nhập id:");
         int inputId=Integer.parseInt(scanner.nextLine());
-        if (inputId==Worker.getAutoId()){
-            System.out.println("Mời bạn nhập phần lương tăng thêm:");
-            double inputUpSalary=Double.parseDouble(scanner.nextLine());
-            double upSalary= workers.get(inputId-1).getSalary()+inputUpSalary;
-            workers.get(inputId-1).setSalary(upSalary);
-            workers.get(inputId-1).setSTATUS(STATUS.UP);
-        }else System.out.println("Nhập sai id");
+        for (Worker worker : workers){
+            if (inputId==worker.getId()){
+                System.out.println("Mời bạn nhập phần lương tăng thêm:");
+                double inputUpSalary=Double.parseDouble(scanner.nextLine());
+                double upSalary= worker.getSalary()+inputUpSalary;
+                worker.setSalary(upSalary);
+                worker.setSTATUS(STATUS.UP);
+            }
+        }
+
     }
     public void downSalary(Scanner scanner, ArrayList<Worker> workers) {
         System.out.println("Mời bạn nhập id:");
         int inputId = Integer.parseInt(scanner.nextLine());
-        if (inputId == Worker.getAutoId()) {
-            System.out.println("Mời bạn nhập phần lương giảm:");
-            double inputDownSalary = Double.parseDouble(scanner.nextLine());
-            double downSalary=workers.get(inputId-1).getSalary()-inputDownSalary;
-            workers.get(inputId-1).setSalary(downSalary);
-            workers.get(inputId-1).setSTATUS(STATUS.DOWN);
-        } else System.out.println("Nhập sai id");
+        for (Worker worker : workers){
+            if (inputId == worker.getId()) {
+                System.out.println("Mời bạn nhập phần lương giảm:");
+                double inputDownSalary = Double.parseDouble(scanner.nextLine());
+                double downSalary=workers.get(inputId-1).getSalary()-inputDownSalary;
+                worker.setSalary(downSalary);
+                worker.setSTATUS(STATUS.DOWN);
+            }
+        }
+
     }
     public void printInfo(ArrayList<Worker> workers){
         System.out.println(workers);
